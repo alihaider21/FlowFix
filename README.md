@@ -24,7 +24,7 @@ User selects text → Right-click → Extension sends to backend → Gemini AI c
 
 Before you begin, ensure you have the following installed:
 
-- **Python 3.8 or higher** - [Download Python](https://www.python.org/downloads/)
+- **Python 3.10 or higher** - [Download Python](https://www.python.org/downloads/)
 - **Google Chrome or Chromium-based browser** - For loading the extension
 - **Google Gemini API Key** - Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
@@ -282,13 +282,6 @@ curl -X POST http://127.0.0.1:5000/correct \
 - Some websites may prevent text replacement due to security policies
 - API usage is subject to Google's Gemini API quotas and limits
 
-## License
-
-[Add your license here]
-
-## Contributing
-
-[Add contributing guidelines here]
 
 ## Support
 
