@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>FlowFix</title>
+    <style>
+      :root {
+        --accent: #2563eb;
+        --bg: #0f172a;
+        --card: #0b1220;
+        --text: #e6eef8;
+        --muted: #98a4bf;
+        --radius: 10px;
+      }
+      html, body {
+        margin: 0;
+        padding: 12px;
+        width: 300px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background: linear-gradient(180deg, #071029, #071225);
+        color: var(--text);
+      }
+      .card {
+        background: rgba(255,255,255,0.03);
+        border-radius: var(--radius);
+        padding: 12px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        box-shadow: 0 6px 18px rgba(4,6,18,0.6);
+      }
+      .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      }
+      .title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .desc { color: var(--muted); font-size: 13px; line-height: 1.2; }
+      .foot { margin-top: 10px; display:flex; gap:8px; }
+      .btn {
+        flex: 1;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      a.help {
+        color: var(--muted);
+        font-size: 12px;
+        text-decoration: none;
+        align-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="icon">
+        <img src="icons/icon48.png" alt="FlowFix" width="34" height="34" />
+      </div>
+      <div style="flex:1">
+        <div class="title">FlowFix</div>
+        <div class="desc">Select text on any page, right-click and choose “FlowFix: Correct grammar”. The selection will be replaced with the corrected text.</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <button class="btn" onclick="openDocs()">How it works</button>
+      <a class="help" href="#" id="status">Server: Unknown</a>
+    </div>
+
+    <script>
+      async function openDocs() {
+        // Future: open settings or docs
+        chrome.tabs.create({ url: "https://example.com/flowfix-docs" });
+      }
+
+      // Quick ping to local server to show inline status
+      async function ping() {
+        try {
+          const res = await fetch("http://127.0.0.1:5000/correct", { method: "OPTIONS" });
+          document.getElementById("status").textContent = "Server: Available";
+        } catch (e) {
+          document.getElementById("status").textContent = "Server: Not reachable";
+        }
+      }
+      ping();
+    </script>
+  </body>
+</html>
